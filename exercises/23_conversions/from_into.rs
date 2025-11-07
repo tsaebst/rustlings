@@ -34,7 +34,20 @@ impl Default for Person {
 // 5. Parse the second element from the split operation into a `u8` as the age.
 // 6. If parsing the age fails, return the default of `Person`.
 impl From<&str> for Person {
-    fn from(s: &str) -> Self {}
+    fn from(s: &str) -> Self {
+	if s.trim().is_empty(){return Person::default();}
+	let sift:Vec<&str>=s.split(",").collect();
+	if sift.len()!=2{return Person::default();}
+	let (name, age)= (sift[0],sift[1]);
+	
+	if name.trim().is_empty(){return Person::default();}
+	
+	let age_num = age.trim().parse::<u8>();
+	if age_num.is_err(){return Person::default();}
+
+	Person{name: name.to_string(), age: age_num.unwrap(),}
+}
+	
 }
 
 fn main() {
