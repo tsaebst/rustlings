@@ -9,7 +9,7 @@ trait OtherTrait {
         true
     }
 }
-
+//structs have impl if 2 traits mentioned above
 struct SomeStruct;
 impl SomeTrait for SomeStruct {}
 impl OtherTrait for SomeStruct {}
@@ -19,7 +19,8 @@ impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
 // TODO: Fix the compiler error by only changing the signature of this function.
-fn some_func(item: ???) -> bool {
+// so here func accepts any args which implements the traits other and some
+fn some_func<T:OtherTrait +SomeTrait>(item:T) -> bool {
     item.some_function() && item.other_function()
 }
 
