@@ -3,7 +3,7 @@
 macro_rules! my_macro {
     () => {
         println!("Check out my macro!");
-    },//sep rules
+    };//sep rules
     ($val:expr) => {
         println!("Look at this other macro: {}", $val);
     }
